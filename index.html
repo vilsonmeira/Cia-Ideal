@@ -4,11 +4,15 @@
 :root{--navy:#172554;--blue:#2563eb;--gold:#f4bd50;--cream:#fffaf0;--ink:#182238;--muted:#667085;--line:#e4e8f0;--green:#16834a}
 *{box-sizing:border-box}body{margin:0;background:#eef1f7;color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}button{font:inherit;cursor:pointer}.top{background:linear-gradient(110deg,#111c42,#263e78);color:white;padding:13px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{display:flex;gap:10px;align-items:center}.logo{background:var(--gold);color:#172554;border-radius:12px;padding:8px;font-size:24px}.brand h1{font-size:clamp(17px,3vw,23px);margin:0}.brand small{color:#dbeafe}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:10px 14px}.stat{background:white;border:1px solid var(--line);border-radius:12px;padding:8px 11px}.stat small{display:block;color:var(--muted);font-size:11px}.stat b{font-size:19px}.layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(260px,.8fr);gap:12px;padding:0 14px 16px}.main,.panel{background:white;border:1px solid var(--line);border-radius:16px;overflow:hidden}.scenehead{padding:11px 14px;display:flex;justify-content:space-between;gap:8px;align-items:center}.scenehead b{color:var(--navy)}.pill{background:#eef3ff;color:#2346a0;padding:5px 9px;border-radius:99px;font-size:11px;font-weight:800}.floor{position:relative;min-height:390px;background:linear-gradient(135deg,#e9dfce,#f7f0e4);overflow:hidden;border-block:1px solid #e1d4c1}.floor:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#bca98b25 1px,transparent 1px),linear-gradient(90deg,#bca98b25 1px,transparent 1px);background-size:42px 42px}.zone{position:absolute;border:2px solid #9e87684d;background:#ffffffa6;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:6px;font-size:12px;font-weight:800;color:#57442f;z-index:1}.zone span{font-size:28px}.zone small{font-size:10px;font-weight:600}.window{left:3%;top:6%;width:28%;height:22%}.rack{right:3%;top:6%;width:28%;height:22%}.fitting{left:3%;bottom:6%;width:28%;height:24%}.mirror{right:3%;bottom:6%;width:28%;height:24%}.counter{left:38%;bottom:5%;width:24%;height:18%}.centerpath{position:absolute;left:34%;top:32%;width:32%;height:42%;border:2px dashed #a68d6c66;border-radius:50%;z-index:1}.people{position:absolute;inset:0;z-index:3;pointer-events:none}.person{position:absolute;transform:translate(-50%,-50%);text-align:center;pointer-events:auto;cursor:pointer;border:0;background:transparent}.person .emoji{font-size:34px;display:block;filter:drop-shadow(0 3px 1px #0002)}.person b{display:block;background:#fff;padding:2px 6px;border-radius:6px;font-size:10px;box-shadow:0 2px 5px #0002;white-space:nowrap}.person.active .emoji{filter:drop-shadow(0 0 5px #2563eb)}.valdir{position:absolute;left:50%;top:49%;z-index:4;transform:translate(-50%,-50%);text-align:center;transition:left .25s,top .25s;pointer-events:none}.valdir span{font-size:42px;display:block}.valdir b{font-size:10px;background:#172554;color:white;padding:2px 7px;border-radius:8px}.controls{padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px}.controls button,.action{border:1px solid #dce2ed;background:white;border-radius:10px;padding:10px;color:#253452;font-weight:700}.controls button.primary,.action.primary{background:var(--navy);color:white;border-color:var(--navy)}.controls button:disabled{opacity:.4}.dpad{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;max-width:190px;margin:auto}.dpad button{padding:8px}.hint{font-size:11px;color:var(--muted);text-align:center;margin:4px}.side{display:grid;gap:10px;align-content:start}.panel{padding:13px}.panel h3{margin:0 0 9px;font-size:15px}.dialog{background:#f3f6fc;border-left:4px solid var(--blue);padding:11px;border-radius:9px;margin:8px 0}.dialog strong{display:block;color:var(--blue);font-size:11px;text-transform:uppercase}.dialog p{margin:4px 0}.actions{display:grid;gap:7px}.action{text-align:left}.action:hover,.controls button:hover{border-color:var(--blue);background:#f4f7ff}.item{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);font-size:13px}.item:last-child{border:0}.tag{font-size:10px;color:var(--green);background:#eaf7ef;border-radius:99px;padding:3px 7px}.cardv{background:linear-gradient(135deg,#172554,#304b88);color:white;padding:12px;border-radius:12px;display:flex;justify-content:space-between;align-items:center}.cardv small{color:#dbeafe}.cardv b{font-size:17px;letter-spacing:1px}.cardv span{font-size:28px}.log{max-height:105px;overflow:auto;font-size:11px;color:var(--muted)}.log p{margin:5px 0;border-bottom:1px solid #eef0f4;padding-bottom:4px}.modal{position:fixed;inset:0;background:#11182799;z-index:10;display:none;align-items:center;justify-content:center;padding:16px}.modal.show{display:flex}.dialogbox{background:white;border-radius:16px;padding:18px;width:min(430px,100%);box-shadow:0 20px 60px #0004}.dialogbox h2{margin:0 0 8px;font-size:20px}.dialogbox p{color:#475467}.choices{display:grid;gap:8px}.choices button{padding:11px;text-align:left;border:1px solid var(--line);border-radius:10px;background:white}.choices button:hover{border-color:var(--blue);background:#f5f8ff}.close{float:right;border:0;background:#eef1f7;border-radius:8px;padding:5px 9px}.toast{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:#172554;color:white;padding:10px 15px;border-radius:10px;z-index:20;display:none;max-width:90%;text-align:center}.toast.show{display:block}
 @media(max-width:760px){.layout{grid-template-columns:1fr}.floor{min-height:360px}.side{grid-template-columns:1fr 1fr}.side .panel:first-child{grid-column:1/-1}}@media(max-width:430px){.stats{grid-template-columns:repeat(2,1fr)}.side{grid-template-columns:1fr}.side .panel:first-child{grid-column:auto}.floor{min-height:330px}.zone{font-size:10px}.zone span{font-size:23px}.top{padding:11px}.brand small{font-size:10px}}
+
+/* Expansão: equipe, reputação e rotina da loja */
+.staff-panel{grid-column:1/-1}.staff-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.staff-card{border:1px solid var(--line);border-radius:10px;padding:9px;background:#fbfcff;font-size:12px}.staff-card b{display:block;color:var(--navy);font-size:13px}.meter{height:7px;background:#e8edf5;border-radius:9px;overflow:hidden;margin:5px 0}.meter i{display:block;height:100%;background:#16834a}.staff-card small{color:var(--muted)}.complaint{color:#a33;background:#fff1f0;padding:3px 6px;border-radius:7px}.facility{position:absolute;z-index:2;border:2px solid #7c9a8a;background:#e9f6eeeb;border-radius:10px;padding:5px;font-size:10px;font-weight:800;text-align:center}.facility span{display:block;font-size:21px}.bath{left:37%;top:4%}.water{left:47%;top:4%}.kitchen{left:57%;top:4%}.floor.dirty:after{content:"🧹  Piso precisando de limpeza · sujeira "+attr(data-dirt);position:absolute;left:34%;top:27%;z-index:2;background:#fff3cd;color:#795500;border-radius:8px;padding:4px 7px;font-size:10px}.routine{display:flex;gap:7px;flex-wrap:wrap;align-items:center}.routine button{border:1px solid var(--line);background:#f8fafc;border-radius:8px;padding:7px;font-size:12px;font-weight:700}.staff-actions{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px}.staff-actions button{font-size:11px;padding:6px;border:1px solid var(--line);background:white;border-radius:7px}
+@media(max-width:600px){.staff-grid{grid-template-columns:1fr}.staff-panel{grid-column:auto}.facility{font-size:9px}.bath{left:35%}.water{left:47%}.kitchen{left:59%}}
 </style></head><body>
 <header class="top"><div class="brand"><div class="logo">👔</div><div><h1>Valdir — O Mestre das Vendas</h1><small>Uma loja viva. Clientes reais, decisões suas.</small></div></div><div class="pill" id="level">NÍVEL 1 · VENDEDOR</div></header>
 <section class="stats"><div class="stat"><small>Vendas fechadas</small><b id="sales">0</b></div><div class="stat"><small>Faturamento</small><b id="revenue">R$ 0</b></div><div class="stat"><small>Reputação</small><b id="points">0 pts</b></div><div class="stat"><small>Clientes na loja</small><b id="customers">1</b></div></section>
 <div class="layout"><main class="main"><div class="scenehead"><b>🏬 CIA IDEAL · MODA SOCIAL</b><span class="pill" id="status">Loja aberta</span></div>
-<div class="floor" id="floor"><div class="zone window" data-zone="vitrine"><span>🪟</span>VITRINE<small>Novidades e ofertas</small></div><div class="zone rack" data-zone="araras"><span>👔</span>ARARAS<small>Camisas e calças</small></div><div class="zone fitting" data-zone="sapatos"><span>👞</span>BANCO DE PROVA<small>Experimente sapatos</small></div><div class="zone mirror" data-zone="provador"><span>🪞</span>PROVADOR<small>Roupas e combinações</small></div><div class="zone counter" data-zone="caixa"><span>🧾</span>CAIXA<small>Finalizar compra</small></div><div class="centerpath"></div><div class="people" id="people"></div><div class="valdir" id="valdir"><span>🧍🏻‍♂️</span><b>VALDIR</b></div></div>
+<div class="floor" id="floor"><div class="zone window" data-zone="vitrine"><span>🪟</span>VITRINE<small>Novidades e ofertas</small></div><div class="zone rack" data-zone="araras"><span>👔</span>ARARAS<small>Camisas e calças</small></div><div class="zone fitting" data-zone="sapatos"><span>👞</span>BANCO DE PROVA<small>Experimente sapatos</small></div><div class="zone mirror" data-zone="provador"><span>🪞</span>PROVADOR<small>Roupas e combinações</small></div><div class="zone counter" data-zone="caixa"><span>🧾</span>CAIXA<small>Finalizar compra</small></div><div class="facility bath" data-facility="banheiro"><span>🚻</span>Banheiro</div><div class="facility water" data-facility="bebedouro"><span>🚰</span>Bebedouro</div><div class="facility kitchen" data-facility="cozinha"><span>🍽️</span>Cozinha</div><div class="centerpath"></div><div class="people" id="people"></div><div class="valdir" id="valdir"><span>🧍🏻‍♂️</span><b>VALDIR</b></div></div>
 <div class="controls"><div><div class="dpad"><span></span><button data-move="up">⬆️</button><span></span><button data-move="left">⬅️</button><button data-move="down">⬇️</button><button data-move="right">➡️</button></div><p class="hint">Use as setas ou W A S D para caminhar</p></div><div class="actions"><button class="primary" id="interact">Conversar / interagir</button><button id="callCustomer">Receber próximo cliente</button><button id="idle">Observar a loja</button></div></div>
 </main><aside class="side">
 <section class="panel"><h3>💬 Atendimento</h3><div class="dialog"><strong id="speaker">Gerente</strong><p id="message">Bem-vindo, Valdir! Caminhe pela loja e aproxime-se dos clientes. Eles chegam em momentos diferentes. Seu trabalho é ajudar sem pressionar.</p></div><div class="actions" id="actions"><button class="action" id="giveCard">Entregar cartão de vendedor</button></div></section>
@@ -106,4 +110,94 @@ $('interact').onclick=interact;$('callCustomer').onclick=spawn;$('giveCard').onc
 $('reset').onclick=()=>{if(confirm('Reiniciar todo o expediente?')){state={x:50,y:49,sales:0,revenue:0,points:0,customers:[],selected:null,cart:[],nextId:1,interactions:0,delivered:0};$('log').innerHTML='<p>Expediente reiniciado. Loja aberta.</p>';message('Novo expediente iniciado. Caminhe pela loja e receba os clientes.','Gerente');update();spawn()}};
 setInterval(()=>{if(Math.random()<.42&&state.customers.filter(c=>c.status!=='saiu'&&c.status!=='comprou').length<4)spawn()},18000);
 update();spawn();
+
+/* Sistema de equipe e expediente */
+const team=[
+{id:'027',name:'Valdir',role:'Vendedor',emoji:'🧍🏻‍♂️',skill:55,complaints:0,section:'Moda social',xp:0,breaks:0},
+{id:'041',name:'Camila',role:'Vendedora',emoji:'👩🏻‍💼',skill:48,complaints:0,section:'Camisas e araras',xp:0,breaks:0},
+{id:'052',name:'Rogério',role:'Vendedor',emoji:'🧑🏽‍💼',skill:43,complaints:0,section:'Calças e acessórios',xp:0,breaks:0}
+];
+const manager={name:'Sandra',mood:'Atenta'};
+let day={hour:9,minute:0,dirt:0,cleanings:0,day:1,complaints:[],gossip:0,paused:false};
+function teamRender(){
+ const grid=$('staffGrid');if(!grid)return;grid.innerHTML='';
+ team.forEach(v=>{const el=document.createElement('div');el.className='staff-card';el.innerHTML='<b>'+v.emoji+' '+v.name+' · '+v.role+'</b><small>Seção: '+v.section+'</small><div class="meter"><i style="width:'+v.skill+'%"></i></div><small>Habilidade '+v.skill+'% · Reclamações <span class="'+(v.complaints>5?'complaint':'')+'">'+v.complaints+'</span> · Evolução '+v.xp+'</small>'+(v.punished?'<p class="complaint">Realocado pelo gerente</p>':'');grid.appendChild(el)});
+ $('clock').textContent=String(day.hour).padStart(2,'0')+':'+String(day.minute).padStart(2,'0');
+ $('dirtLabel').textContent='Limpeza: '+day.dirt+'% de sujeira';
+ $('floor').classList.toggle('dirty',day.dirt>=35);$('floor').dataset.dirt=day.dirt+'%';
+}
+function managerSay(t){$('managerMessage').textContent=t;message(t,'Gerente Sandra');}
+function complaintFor(v,reason,customer){
+ v.complaints++;v.xp+=2;day.complaints.push({seller:v.name,reason,customer:customer||'Cliente'});day.gossip++;
+ log('Reclamação sobre '+v.name+': '+reason);
+ managerSay('Recebi um comentário de cliente sobre '+v.name+'. Vou conversar, orientar e acompanhar a próxima abordagem.');
+ v.skill=Math.max(15,v.skill-2);
+ if(v.complaints>5&&!v.punished){v.punished=true;const sections=['Vitrine e organização','Acessórios','Estoque e reposição','Apoio no provador'];v.section=sections[Math.floor(Math.random()*sections.length)];v.breaks++;managerSay(v.name+' ultrapassou cinco reclamações. Foi retirado temporariamente do atendimento direto e realocado para '+v.section+' para refletir e treinar.');log('Gerente aplicou realocação educativa em '+v.name+' após '+v.complaints+' reclamações.');}
+ teamRender();
+}
+function compliment(v,customer){v.skill=Math.min(100,v.skill+2);v.xp+=3;state.points+=2;log(customer+' elogiou a atenção de '+v.name+'. Habilidade +2.');teamRender();}
+function customerGossip(){
+ const active=state.customers.filter(c=>c.status!=='saiu'&&c.status!=='comprou');
+ if(active.length<2)return;
+ const c=active[Math.floor(Math.random()*active.length)],d=active.find(x=>x.id!==c.id);
+ if(!d)return;
+ const seller=team[Math.floor(Math.random()*team.length)];
+ const bad=['me interrompeu antes de eu explicar o que precisava','ficou insistindo mesmo depois de eu dizer que queria olhar','nem perguntou meu tamanho ou orçamento','falou comigo sem atenção e ficou olhando o celular'];
+ const reason=bad[Math.floor(Math.random()*bad.length)];
+ log(c.name+' comentou com '+d.name+': “'+seller.name+' '+reason+'.”');
+ message('“Só um cuidado: achei a abordagem de '+seller.name+' um pouco inconveniente.” '+d.name+' ouviu a reclamação.','Conversa entre clientes');
+ complaintFor(seller,reason,c.name);
+}
+function autoStaff(){
+ const active=state.customers.filter(c=>c.status==='olhando'&&!c.following);
+ if(!active.length)return;
+ const c=active[Math.floor(Math.random()*active.length)];
+ const seller=team.filter(v=>!v.punished)[Math.floor(Math.random()*team.filter(v=>!v.punished).length)];
+ if(!seller)return;
+ const poor=seller.skill<38||Math.random()<.13;
+ if(poor){complaintFor(seller,'abordagem apressada ou sem investigar a necessidade',c.name);return;}
+ seller.xp++;if(Math.random()<.32)compliment(seller,c.name);
+ log(seller.name+' ofereceu ajuda respeitando o espaço de '+c.name+'.');
+}
+function advanceHour(){
+ day.hour++;if(day.hour>=22){day.hour=9;day.day++;log('A loja encerrou o expediente. Iniciou o dia '+day.day+'.');}
+ day.dirt=Math.min(100,day.dirt+Math.floor(Math.random()*9+5));
+ if(day.hour%2===0)customerGossip();
+ if(day.hour%3===0)autoStaff();
+ managerSay('São '+String(day.hour).padStart(2,'0')+':00. Acompanhe as vendas, a limpeza e o bem-estar da equipe.');
+ if(day.dirt>=60)managerSay('A loja está ficando suja. Precisamos organizar o salão antes que isso prejudique a experiência.');
+ teamRender();
+}
+function cleanStore(){
+ day.dirt=Math.max(0,day.dirt-45);day.cleanings++;state.points+=5;
+ log('Loja limpa e organizada pela equipe.');managerSay('Ótimo! O salão está mais agradável. A limpeza também faz parte de um bom atendimento.');teamRender();toast('Loja organizada!');
+}
+function selfReview(){
+ const v=team.filter(x=>!x.punished).sort((a,b)=>a.skill-b.skill)[0]||team[0];
+ openModal('Autoavaliação · '+v.name,'O expediente dá uma pausa para '+v.name+' refletir. O que poderia melhorar?',[
+ {label:'Ouvir mais antes de oferecer produtos',run:()=>{v.skill=Math.min(100,v.skill+8);v.xp+=5;managerSay(v.name+' reconheceu que precisa ouvir melhor. Habilidade +8.');teamRender()}},
+ {label:'Respeitar o tempo e o espaço do cliente',run:()=>{v.skill=Math.min(100,v.skill+8);v.xp+=5;managerSay(v.name+' percebeu que não deve pressionar o cliente. Habilidade +8.');teamRender()}},
+ {label:'Estudar produtos, tamanhos e combinações',run:()=>{v.skill=Math.min(100,v.skill+8);v.xp+=5;managerSay(v.name+' decidiu estudar os produtos para oferecer sugestões mais úteis. Habilidade +8.');teamRender()}}
+ ]);
+}
+function managerConversation(){openModal('Gerente Sandra','Como deseja conduzir a equipe neste momento?',[
+{label:'Orientar individualmente quem recebeu reclamações',run:()=>{let v=[...team].sort((a,b)=>b.complaints-a.complaints)[0];v.skill=Math.min(100,v.skill+5);managerSay('Sandra conversou com '+v.name+', ouviu sua versão e combinou uma meta de atendimento respeitoso.');teamRender()}},
+{label:'Reconhecer quem recebeu elogios',run:()=>{let v=[...team].sort((a,b)=>b.skill-a.skill)[0];v.skill=Math.min(100,v.skill+3);state.points+=3;managerSay('Sandra reconheceu o bom trabalho de '+v.name+' e compartilhou boas práticas.');teamRender()}},
+{label:'Reorganizar as seções e dividir tarefas',run:()=>{managerSay('Sandra redistribuiu as tarefas para equilibrar o fluxo de clientes, reposição e organização.');team.forEach((v,i)=>{if(!v.punished)v.section=['Moda social','Camisas e araras','Calças e acessórios'][i]});teamRender()}}
+]);}
+function breakAt(place){
+ if(place==='banheiro'){managerSay('Funcionário fez uma pausa rápida para usar o banheiro.');log('Pausa de necessidade: banheiro.');}
+ if(place==='bebedouro'){managerSay('Funcionário bebeu água e voltou ao trabalho hidratado.');log('Pausa para água no bebedouro.');}
+ if(place==='cozinha'){managerSay('Horário de descanso: equipe pode fazer uma refeição na cozinha.');log('Pausa para refeição na cozinha.');}
+ state.points+=1;toast('Pausa registrada: '+place); 
+}
+document.querySelectorAll('[data-facility]').forEach(el=>el.addEventListener('click',()=>breakAt(el.dataset.facility)));
+$('advanceTime').onclick=advanceHour;$('cleanStore').onclick=cleanStore;$('selfReview').onclick=selfReview;$('managerTalk').onclick=managerConversation;
+$('staffMeeting').onclick=()=>{team.forEach(v=>{if(v.complaints>0)v.skill=Math.min(100,v.skill+2)});managerSay('Reunião concluída: cada vendedor compartilhou uma dificuldade e uma melhoria.');teamRender();};
+setInterval(()=>{if(!day.paused){day.dirt=Math.min(100,day.dirt+1);teamRender()}},45000);
+const originalSpawn=spawn;
+spawn=function(){originalSpawn();const c=state.customers[state.customers.length-1];if(c){c.assignedSeller=team[Math.floor(Math.random()*team.length)].id;log(c.name+' foi direcionado para '+team.find(v=>v.id===c.assignedSeller).name+'.')}};
+const oldUpdate=update;
+update=function(){oldUpdate();teamRender()};
+teamRender();
 </script></body></html>
