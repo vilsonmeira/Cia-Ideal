@@ -8,6 +8,9 @@
 /* Expansão: equipe, reputação e rotina da loja */
 .staff-panel{grid-column:1/-1}.staff-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.staff-card{border:1px solid var(--line);border-radius:10px;padding:9px;background:#fbfcff;font-size:12px}.staff-card b{display:block;color:var(--navy);font-size:13px}.meter{height:7px;background:#e8edf5;border-radius:9px;overflow:hidden;margin:5px 0}.meter i{display:block;height:100%;background:#16834a}.staff-card small{color:var(--muted)}.complaint{color:#a33;background:#fff1f0;padding:3px 6px;border-radius:7px}.facility{position:absolute;z-index:2;border:2px solid #7c9a8a;background:#e9f6eeeb;border-radius:10px;padding:5px;font-size:10px;font-weight:800;text-align:center}.facility span{display:block;font-size:21px}.bath{left:37%;top:4%}.water{left:47%;top:4%}.kitchen{left:57%;top:4%}.floor.dirty:after{content:"🧹  Piso precisando de limpeza · sujeira "+attr(data-dirt);position:absolute;left:34%;top:27%;z-index:2;background:#fff3cd;color:#795500;border-radius:8px;padding:4px 7px;font-size:10px}.routine{display:flex;gap:7px;flex-wrap:wrap;align-items:center}.routine button{border:1px solid var(--line);background:#f8fafc;border-radius:8px;padding:7px;font-size:12px;font-weight:700}.staff-actions{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px}.staff-actions button{font-size:11px;padding:6px;border:1px solid var(--line);background:white;border-radius:7px}
 @media(max-width:600px){.staff-grid{grid-template-columns:1fr}.staff-panel{grid-column:auto}.facility{font-size:9px}.bath{left:35%}.water{left:47%}.kitchen{left:59%}}
+
+.schedule-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:8px}.schedule-cell{background:#f8fafc;border:1px solid var(--line);padding:8px;border-radius:9px;font-size:11px}.schedule-cell b{display:block;color:var(--navy)}.shift-status{display:inline-block;padding:3px 6px;border-radius:7px;background:#e8f5ed;color:#17643a;font-size:10px;font-weight:800}.shift-status.rest{background:#fff2d8;color:#865600}.shift-status.off{background:#fce8e8;color:#922}.promotion{background:#fff8e7;border:1px solid #f0d58b;border-radius:10px;padding:10px;margin-top:8px;font-size:12px}.time-controls{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.time-controls button{border:1px solid var(--line);border-radius:8px;padding:7px 9px;background:white;font-size:11px;font-weight:700}.staff-card .staff-actions{margin-top:6px}
+@media(max-width:600px){.schedule-grid{grid-template-columns:1fr}}
 </style></head><body>
 <header class="top"><div class="brand"><div class="logo">👔</div><div><h1>Valdir — O Mestre das Vendas</h1><small>Uma loja viva. Clientes reais, decisões suas.</small></div></div><div class="pill" id="level">NÍVEL 1 · VENDEDOR</div></header>
 <section class="stats"><div class="stat"><small>Vendas fechadas</small><b id="sales">0</b></div><div class="stat"><small>Faturamento</small><b id="revenue">R$ 0</b></div><div class="stat"><small>Reputação</small><b id="points">0 pts</b></div><div class="stat"><small>Clientes na loja</small><b id="customers">1</b></div></section>
@@ -19,7 +22,7 @@
 <section class="panel"><h3>🪪 Seu cartão profissional</h3><div class="cardv"><div><small>CIA IDEAL · MODA SOCIAL</small><br><b>VALDIR</b><br><small>Consultor de vendas · Nº 027</small></div><span>👔</span></div><p class="hint">Entregue o cartão ao cliente para ele procurar você quando quiser.</p></section>
 <section class="panel"><h3>🛍️ Produtos da loja</h3><div class="item"><span>Camisa social</span><b>R$ 89,90</b></div><div class="item"><span>Calça social</span><b>R$ 119,90</b></div><div class="item"><span>Blazer</span><b>R$ 229,90</b></div><div class="item"><span>Cinto</span><b>R$ 39,90</b></div><div class="item"><span>Gravata</span><b>R$ 29,90</b></div><div class="item"><span>Sapato social</span><b>R$ 159,90</b></div></section>
 <section class="panel"><h3>📋 Movimento da loja</h3><div class="log" id="log"><p>Loja aberta. Valdir iniciou o expediente.</p></div><button class="action" id="reset" style="margin-top:8px;width:100%">Reiniciar expediente</button></section>
-<section class="panel staff-panel"><h3>👥 Equipe, avaliação e convivência</h3><div class="staff-grid" id="staffGrid"></div><div class="dialog"><strong>Gerente da loja</strong><p id="managerMessage">Acompanhe a equipe, ouça os clientes e ajude cada vendedor a evoluir.</p></div><div class="routine"><b id="clock">09:00</b><span id="dirtLabel">Limpeza: 0% de sujeira</span><button id="advanceTime">⏩ Passar 1 hora</button><button id="cleanStore">🧹 Organizar / limpar loja</button><button id="staffMeeting">🗣️ Reunião de equipe</button></div><div class="staff-actions"><button id="selfReview">📝 Autoavaliação dos vendedores</button><button id="managerTalk">👨‍💼 Conversar com gerente</button></div></section></aside></div>
+<section class="panel staff-panel"><h3>👥 Equipe, avaliação e convivência</h3><div class="staff-grid" id="staffGrid"></div><div class="dialog"><strong>Gerente da loja</strong><p id="managerMessage">Acompanhe a equipe, ouça os clientes e ajude cada vendedor a evoluir.</p></div><div class="routine"><b id="clock">09:00</b><span id="dirtLabel">Limpeza: 0% de sujeira</span><button id="advanceTime">⏩ Passar 1 hora</button><button id="cleanStore">🧹 Organizar / limpar loja</button><button id="staffMeeting">🗣️ Reunião de equipe</button></div><div class="staff-actions"><button id="selfReview">📝 Autoavaliação dos vendedores</button><button id="managerTalk">👨‍💼 Conversar com gerente</button></div></section><section class="panel staff-panel" id="schedulePanel"><h3>🗓️ Escala, pausas e cobertura</h3><div class="schedule-grid" id="scheduleGrid"></div><div class="dialog"><strong>Escala do dia</strong><p id="scheduleMessage">Pausas escalonadas para manter vendedores disponíveis. Sandra cobre o caixa durante as pausas.</p></div><div class="time-controls"><button id="advance10">⏱️ Avançar 10 minutos</button><button id="advance30">⏩ Avançar 30 minutos</button><button id="nextDay">🌅 Próximo dia</button><button id="managerLeave">🏖️ Simular folga da gerente</button><button id="managerVacation">🌴 Simular férias da gerente</button></div><div class="promotion" id="promotionBox">🏅 A promoção a subgerente será avaliada pelo desempenho, vendas, elogios e qualidade do atendimento.</div></section></aside></div>
 <div class="modal" id="modal"><div class="dialogbox"><button class="close" id="close">✕</button><h2 id="modalTitle">Atendimento</h2><p id="modalText"></p><div class="choices" id="modalChoices"></div></div></div><div class="toast" id="toast"></div>
 <script>
 const $=id=>document.getElementById(id), money=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
@@ -192,7 +195,7 @@ function breakAt(place){
  state.points+=1;toast('Pausa registrada: '+place); 
 }
 document.querySelectorAll('[data-facility]').forEach(el=>el.addEventListener('click',()=>breakAt(el.dataset.facility)));
-$('advanceTime').onclick=advanceHour;$('cleanStore').onclick=cleanStore;$('selfReview').onclick=selfReview;$('managerTalk').onclick=managerConversation;
+$('advanceTime').onclick=()=>advanceMinutes(60);$('cleanStore').onclick=cleanStore;$('selfReview').onclick=selfReview;$('managerTalk').onclick=managerConversation;
 $('staffMeeting').onclick=()=>{team.forEach(v=>{if(v.complaints>0)v.skill=Math.min(100,v.skill+2)});managerSay('Reunião concluída: cada vendedor compartilhou uma dificuldade e uma melhoria.');teamRender();};
 setInterval(()=>{if(!day.paused){day.dirt=Math.min(100,day.dirt+1);teamRender()}},45000);
 const originalSpawn=spawn;
@@ -200,4 +203,144 @@ spawn=function(){originalSpawn();const c=state.customers[state.customers.length-
 const oldUpdate=update;
 update=function(){oldUpdate();teamRender()};
 teamRender();
+
+/* Escala de turnos, pausas, autonomia da equipe e promoção */
+const scheduleConfig={
+ coffee1:630, lunch:720, coffee2:930, close:1320,
+ pauses:[
+  {name:'Café da manhã',start:630,duration:10,kind:'café'},
+  {name:'Almoço',start:720,duration:60,kind:'almoço'},
+  {name:'Café da tarde',start:930,duration:10,kind:'café'}
+ ]
+};
+let roster={dayOffIndex:0,managerAway:false,managerVacation:false,promoted:null,daySales:{027:0,041:0,052:0},totalSales:{027:0,041:0,052:0},daysWorked:{027:0,041:0,052:0},breakLog:[],shiftEvents:[]};
+const originalAdvanceHour=advanceHour;
+function minutesNow(){return day.hour*60+day.minute}
+function fmtTime(m){return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0')}
+function onDuty(v){return !v.dayOff&&!v.resting&&(!v.punished||v.section!=='Estoque e reposição')}
+function managerOnDuty(){return !roster.managerAway&&!roster.managerVacation}
+function activeManager(){return roster.promoted||null}
+function managerName(){return managerOnDuty()?manager.name:(activeManager()?activeManager().name+' (subgerente)': 'Gerência de plantão')}
+function assignDayOff(){
+ team.forEach((v,i)=>{v.dayOff=(i===roster.dayOffIndex);v.resting=false;v.shift='09h–18h';});
+ // Uma folga por dia, alternando entre os três vendedores.
+ roster.dayOffIndex=(roster.dayOffIndex+1)%team.length;
+}
+function scheduleRender(){
+ const grid=$('scheduleGrid');if(!grid)return;
+ grid.innerHTML='';
+ team.forEach(v=>{
+  const el=document.createElement('div');el.className='schedule-cell';
+  let status=v.dayOff?'FOLGA':v.resting?'EM PAUSA':'EM SERVIÇO';
+  el.innerHTML='<b>'+v.emoji+' '+v.name+'</b><span class="shift-status '+(v.dayOff?'off':v.resting?'rest':'')+'">'+status+'</span><p>Turno: '+v.shift+'</p><small>Folga alternada · '+(v.dayOff?'Hoje': 'Próxima escala')+'</small>';
+  grid.appendChild(el);
+ });
+ const upcoming=scheduleConfig.pauses.map(p=>p.name+' '+fmtTime(p.start)).join(' · ');
+ $('scheduleMessage').textContent='Hoje: '+upcoming+'. Pausas individuais escalonadas; Sandra assume o caixa. Gerência atual: '+managerName()+'.';
+ $('promotionBox').textContent=roster.promoted?'🏅 '+roster.promoted.name+' é subgerente e cobre a gerência nas folgas e férias de Sandra.':'🏅 Promoção: melhor desempenho acumulado, vendas, elogios e habilidade. São avaliados os resultados de todos os dias.';
+}
+function advanceMinutes(n){
+ let old=minutesNow(), target=old+n;
+ while(old<target){
+  old++;
+  day.hour=Math.floor(old/60);day.minute=old%60;
+  if(day.hour>=22){endWorkDay();return}
+  scheduledBreaks(old);
+  if(old%15===0){day.dirt=Math.min(100,day.dirt+1);autonomousStoreStep()}
+ }
+ teamRender();scheduleRender();
+}
+function scheduledBreaks(minute){
+ // Escalonamento: cada colaborador inicia sua pausa com diferença de 10 minutos.
+ scheduleConfig.pauses.forEach(p=>{
+  team.forEach((v,i)=>{
+   const start=p.start+i*10;
+   if(minute===start)startBreak(v,p);
+   if(minute===start+p.duration)endBreak(v,p);
+  });
+ });
+}
+function startBreak(v,p){
+ if(v.dayOff)return;
+ v.resting=true;v.breakType=p.kind;
+ roster.breakLog.push({day:day.day,name:v.name,type:p.name,time:fmtTime(minutesNow())});
+ log(v.name+' iniciou '+p.name.toLowerCase()+' ('+p.duration+' minutos).');
+ managerSay(v.name+' está em '+p.name.toLowerCase()+'. '+(managerOnDuty()?'Sandra está cobrindo o caixa.':managerName()+' está cobrindo o caixa.') );
+ scheduleRender();
+}
+function endBreak(v,p){
+ v.resting=false;v.breakType=null;
+ log(v.name+' voltou de '+p.name.toLowerCase()+' e retomou o atendimento.');
+ managerSay(v.name+' voltou ao salão. A escala continua normalmente.');
+ scheduleRender();
+}
+function autonomousStoreStep(){
+ // Os vendedores circulam, abordam com educação e atendem sem depender do jogador.
+ const available=team.filter(v=>onDuty(v));
+ if(!available.length)return;
+ const waiting=state.customers.filter(c=>c.status==='olhando'&&!c.following);
+ if(!waiting.length)return;
+ const c=waiting[Math.floor(Math.random()*waiting.length)];
+ const seller=available.find(v=>v.id===c.assignedSeller)||available[Math.floor(Math.random()*available.length)];
+ if(!seller)return;
+ c.assignedSeller=seller.id;
+ const chance=Math.min(.88,.45+seller.skill/200);
+ if(Math.random()<chance){
+  c.status='atendido';c.servedBy=seller.id;c.lastHelp=Date.now();
+  seller.xp+=2;seller.skill=Math.min(100,seller.skill+0.15);
+  c.x=zones[c.zone] ? zones[c.zone].x : c.x;c.y=zones[c.zone] ? zones[c.zone].y : c.y;
+  log(seller.name+' se aproximou de '+c.name+' e perguntou se precisava de ajuda.');
+  if(Math.random()<.2){compliment(seller,c.name);c.status='olhando';}
+  else c.status='olhando';
+ }else{
+  complaintFor(seller,'abordagem pouco adequada durante o atendimento automático',c.name);
+ }
+ // Movimento dos colaboradores entre as seções.
+ seller.section=['Vitrine','Camisas e araras','Calças e acessórios','Provador'][Math.floor(Math.random()*4)];
+ teamRender();
+}
+function endWorkDay(){
+ log('Expediente encerrado às 22h. Vendas do dia: '+state.sales+'.');
+ team.forEach(v=>{if(!v.dayOff)roster.daysWorked[v.id]=(roster.daysWorked[v.id]||0)+1;});
+ day.day++;day.hour=9;day.minute=0;day.dirt=Math.min(100,day.dirt+8);
+ state.customers=state.customers.filter(c=>c.status==='comprou'||c.status==='saiu');
+ roster.daySales={027:0,041:0,052:0};
+ assignDayOff();
+ // O ciclo diário recomeça; a folga gira entre Valdir, Camila e Rogério.
+ managerSay('Novo expediente! A folga de hoje foi alternada. Confira a escala antes de distribuir os atendimentos.');
+ team.forEach(v=>{v.resting=false;v.breakType=null;});
+ scheduleRender();teamRender();toast('Novo dia de trabalho iniciado!');
+}
+function simulateNextDay(){endWorkDay()}
+function promoteBest(){
+ if(roster.promoted)return;
+ const eligible=team.filter(v=>!v.punished);
+ if(!eligible.length)return;
+ const best=[...eligible].sort((a,b)=>{
+  const score=v=>(roster.totalSales[v.id]||0)*10+v.skill*2+v.xp+v.complaints*-8;
+  return score(b)-score(a);
+ })[0];
+ const score=(roster.totalSales[best.id]||0)*10+best.skill*2+best.xp-best.complaints*8;
+ if((roster.daysWorked[best.id]||0)>=5&&score>=130){
+  roster.promoted=best;best.role='Subgerente';
+  managerSay('Sandra promoveu '+best.name+' a subgerente pelo desempenho consistente. Agora cobre a gerência nas folgas e férias.');
+  log(best.name+' foi promovido(a) a subgerente.');
+  $('promotionBox').textContent='🏅 PROMOÇÃO! '+best.name+' agora é subgerente.';
+ }
+}
+function managerAbsence(kind){
+ roster.managerAway=kind==='folga';roster.managerVacation=kind==='férias';
+ if(roster.managerAway||roster.managerVacation){
+  const sub=activeManager();
+  if(sub){managerSay('Sandra está '+kind+'. '+sub.name+' assumiu a gerência, incluindo a cobertura do caixa.');log(sub.name+' assumiu a gerência durante '+kind+' da gerente.');}
+  else{managerSay('Sandra está '+kind+'. Ainda não há subgerente promovido; a simulação designa o vendedor mais experiente para supervisionar temporariamente.');}
+ }else managerSay('Sandra retornou à gerência.');
+ scheduleRender();
+}
+$('advance10').onclick=()=>advanceMinutes(10);
+$('advance30').onclick=()=>advanceMinutes(30);
+$('nextDay').onclick=simulateNextDay;
+$('managerLeave').onclick=()=>managerAbsence(roster.managerAway?'retorno':'folga');
+$('managerVacation').onclick=()=>managerAbsence(roster.managerVacation?'retorno':'férias');
+assignDayOff();scheduleRender();
 </script></body></html>
