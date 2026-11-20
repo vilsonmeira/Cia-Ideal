@@ -125,6 +125,7 @@ let day={hour:9,minute:0,dirt:0,cleanings:0,day:1,complaints:[],gossip:0,paused:
 function teamRender(){
  const grid=$('staffGrid');if(!grid)return;grid.innerHTML='';
  team.forEach(v=>{const el=document.createElement('div');el.className='staff-card';el.innerHTML='<b>'+v.emoji+' '+v.name+' · '+v.role+'</b><small>Seção: '+v.section+'</small><div class="meter"><i style="width:'+v.skill+'%"></i></div><small>Habilidade '+v.skill+'% · Reclamações <span class="'+(v.complaints>5?'complaint':'')+'">'+v.complaints+'</span> · Evolução '+v.xp+'</small>'+(v.punished?'<p class="complaint">Realocado pelo gerente</p>':'');grid.appendChild(el)});
+ const staffLayer=$('staffPeople');if(staffLayer){staffLayer.innerHTML='';team.forEach((v,i)=>{if(v.dayOff)return;const p=document.createElement('div');p.className='person';const spots=[{x:39,y:34},{x:66,y:47},{x:38,y:72}];const pos=v.walkPos||spots[i];p.style.left=pos.x+'%';p.style.top=pos.y+'%';p.innerHTML='<span class="emoji">'+v.emoji+'</span><b>'+v.name+(v.resting?' · pausa':'')+'</b>';staffLayer.appendChild(p);});}
  $('clock').textContent=String(day.hour).padStart(2,'0')+':'+String(day.minute).padStart(2,'0');
  $('dirtLabel').textContent='Limpeza: '+day.dirt+'% de sujeira';
  $('floor').classList.toggle('dirty',day.dirt>=35);$('floor').dataset.dirt=day.dirt+'%';
@@ -213,7 +214,7 @@ const scheduleConfig={
   {name:'Café da tarde',start:930,duration:10,kind:'café'}
  ]
 };
-let roster={dayOffIndex:0,managerAway:false,managerVacation:false,promoted:null,daySales:{027:0,041:0,052:0},totalSales:{027:0,041:0,052:0},daysWorked:{027:0,041:0,052:0},breakLog:[],shiftEvents:[]};
+let roster={dayOffIndex:1,managerAway:false,managerVacation:false,promoted:null,daySales:{027:0,041:0,052:0},totalSales:{027:0,041:0,052:0},daysWorked:{027:0,041:0,052:0},breakLog:[],shiftEvents:[]};
 const originalAdvanceHour=advanceHour;
 function minutesNow(){return day.hour*60+day.minute}
 function fmtTime(m){return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0')}
@@ -300,6 +301,7 @@ function autonomousStoreStep(){
   complaintFor(seller,'abordagem pouco adequada durante o atendimento automático',c.name);
  }
  // Movimento dos colaboradores entre as seções.
+ const patrol=[{x:18,y:36},{x:80,y:38},{x:23,y:72},{x:76,y:73}];seller.walkPos=patrol[Math.floor(Math.random()*patrol.length)];
  seller.section=['Vitrine','Camisas e araras','Calças e acessórios','Provador'][Math.floor(Math.random()*4)];
  teamRender();
 }
@@ -313,7 +315,7 @@ function endWorkDay(){
  // O ciclo diário recomeça; a folga gira entre Valdir, Camila e Rogério.
  managerSay('Novo expediente! A folga de hoje foi alternada. Confira a escala antes de distribuir os atendimentos.');
  team.forEach(v=>{v.resting=false;v.breakType=null;});
- scheduleRender();teamRender();toast('Novo dia de trabalho iniciado!');
+ scheduleRender();teamRender();promoteBest();toast('Novo dia de trabalho iniciado!');
 }
 function simulateNextDay(){endWorkDay()}
 function promoteBest(){
