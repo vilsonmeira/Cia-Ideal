@@ -1,0 +1,20 @@
+{
+  "id": "./",
+  "name": "Valdir — O Mestre das Vendas",
+  "short_name": "Valdir",
+  "description": "Simulador interativo de vendas e gestão de loja.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#eef1f7",
+  "theme_color": "#172554",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
