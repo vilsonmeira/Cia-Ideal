@@ -414,7 +414,8 @@ const previousBreakAt=breakAt;
 breakAt=function(place){previousBreakAt(place);if(place==='banheiro')registerBathroomUse();};
 const previousUpdateMonitor=update;
 update=function(){previousUpdateMonitor();monitorRender();};
-$('auditBathroom').onclick=()=>{registerBathroomUse();toast('Uso do banheiro registrado sem identificar a pessoa.');};\n$('auditSupplies').onclick=()=>{storeAudit.soap+=5;storeAudit.toiletPaper+=5;storeAudit.paperTowels+=5;auditEvent('Reposição de materiais de higiene','5 unidades de cada',0);toast('Reposição registrada; ajuste custos na configuração do jogo.');};
+$('auditBathroom').onclick=()=>{registerBathroomUse();toast('Uso do banheiro registrado sem identificar a pessoa.');};
+$('auditSupplies').onclick=()=>{storeAudit.soap+=5;storeAudit.toiletPaper+=5;storeAudit.paperTowels+=5;auditEvent('Reposição de materiais de higiene','5 unidades de cada',0);toast('Reposição registrada; ajuste custos na configuração do jogo.');};
 $('auditExport').onclick=()=>{const summary=storeAudit.events.map(e=>'Dia '+e.day+' '+e.time+' | '+e.label+' | '+e.qty+' | '+money(e.cost)).join('\n')+'\nTotal estimado: '+$('auditTotals').textContent;openModal('Resumo da auditoria',summary,[{label:'Fechar',run:()=>{}}]);};
 monitorRender();auditRender();
 </script>
