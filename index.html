@@ -73,6 +73,19 @@
 }
 @media(max-width:430px){.floor{min-height:390px}}
 
+
+/* Expansão da simulação: CRM, gestão e rede de lojas */
+.expansion-panel{grid-column:1/-1}
+.crm-summary,.management-kpis,.branch-overview{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:8px 0}
+.crm-kpi,.management-kpi,.branch-kpi{background:#f4f7fc;border:1px solid #e1e7f0;border-radius:9px;padding:9px;font-size:11px}
+.crm-kpi b,.management-kpi b,.branch-kpi b{display:block;color:#172554;font-size:17px}
+.crm-list,.branch-list{display:grid;gap:7px;margin-top:8px}
+.crm-row,.branch-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px;border:1px solid #e1e7f0;border-radius:9px;background:#fbfcff;font-size:12px}
+.crm-row small,.branch-row small{display:block;color:#667085}
+.branch-row.active{border-color:#2563eb;background:#eff5ff}
+.crm-tier{font-size:10px;font-weight:800;color:#17643a;background:#e8f5ed;padding:4px 7px;border-radius:99px;white-space:nowrap}
+@media(max-width:600px){.expansion-panel{grid-column:auto}.crm-summary,.management-kpis,.branch-overview{grid-template-columns:1fr 1fr}.crm-row,.branch-row{align-items:flex-start}}
+
 </style></head><body>
 <header class="top"><div class="brand"><img class="app-logo" src="./icon.svg" alt="Logo Valdir"><div><h1>Valdir — O Mestre das Vendas</h1><small>Uma loja viva. Clientes reais, decisões suas.</small></div></div><div style="display:flex;align-items:center;gap:8px"><button id="installApp" class="install-btn" hidden>＋ Instalar app</button><div class="pill" id="level">NÍVEL 1 · VENDEDOR</div></div></header>
 <section class="stats"><div class="stat"><small>Vendas fechadas</small><b id="sales">0</b></div><div class="stat"><small>Faturamento</small><b id="revenue">R$ 0</b></div><div class="stat"><small>Reputação</small><b id="points">0 pts</b></div><div class="stat"><small>Clientes na loja</small><b id="customers">1</b></div></section>
@@ -86,6 +99,10 @@
 <section class="panel"><h3>🪪 Seu cartão profissional</h3><div class="cardv"><div><small>CIA IDEAL · MODA SOCIAL</small><br><b>VALDIR</b><br><small>Consultor de vendas · Nº 027</small></div><span>👔</span></div><p class="hint">Entregue o cartão ao cliente para ele procurar você quando quiser.</p></section>
 <section class="panel"><h3>🛍️ Produtos da loja</h3><div class="item"><span>Camisa social</span><b>R$ 89,90</b></div><div class="item"><span>Calça social</span><b>R$ 119,90</b></div><div class="item"><span>Blazer</span><b>R$ 229,90</b></div><div class="item"><span>Cinto</span><b>R$ 39,90</b></div><div class="item"><span>Gravata</span><b>R$ 29,90</b></div><div class="item"><span>Sapato social</span><b>R$ 159,90</b></div></section>
 <section class="panel"><h3>📋 Movimento da loja</h3><div class="log" id="log"><p>Loja aberta. Valdir iniciou o expediente.</p></div><button class="action" id="reset" style="margin-top:8px;width:100%">Reiniciar expediente</button></section>
+
+<section class="panel expansion-panel" id="crmPanel"><h3>🧠 Clientes inteligentes · CRM e fidelidade</h3><div class="crm-summary" id="crmSummary">Nenhum histórico de clientes registrado ainda.</div><div class="staff-actions"><button id="crmRefresh">Atualizar carteira de clientes</button><button id="crmExport">Exportar resumo de clientes</button></div><div id="crmList" class="crm-list"></div><small>Histórico fictício do jogo, salvo neste navegador. Não coleta dados pessoais reais.</small></section>
+<section class="panel expansion-panel" id="peopleManagement"><h3>👔 Gestão de pessoas · treinamento e metas</h3><div class="management-kpis" id="managementKpis"></div><div class="dialog"><strong>Plano de desenvolvimento</strong><p id="trainingMessage">Escolha uma ação para desenvolver a equipe e melhorar a experiência dos clientes.</p></div><div class="staff-actions"><button id="trainService">🎓 Treinar atendimento</button><button id="trainProducts">👕 Treinar produtos</button><button id="teamBonus">🏆 Reconhecer equipe</button><button id="setTeamGoal">🎯 Definir meta diária</button></div></section>
+<section class="panel expansion-panel" id="branchesPanel"><h3>🏬 Expansão · rede de filiais</h3><div class="branch-overview" id="branchOverview"></div><div class="staff-actions"><button id="openBranch">＋ Abrir nova filial</button><button id="switchBranch">⇄ Alternar unidade ativa</button><button id="branchReport">📊 Relatório da rede</button></div><div class="dialog"><strong>Plano de expansão</strong><p id="branchMessage">Comece fortalecendo a unidade principal. Ao abrir filiais, cada loja terá nome, gerente, meta e faturamento próprios dentro da simulação.</p></div><div id="branchList" class="branch-list"></div></section>
 <section class="panel staff-panel"><h3>👥 Equipe, avaliação e convivência</h3><div class="staff-grid" id="staffGrid"></div><div class="dialog"><strong>Gerente da loja</strong><p id="managerMessage">Acompanhe a equipe, ouça os clientes e ajude cada vendedor a evoluir.</p></div><div class="routine"><b id="clock">09:00</b><span id="dirtLabel">Limpeza: 0% de sujeira</span><button id="advanceTime">⏩ Passar 1 hora</button><button id="cleanStore">🧹 Organizar / limpar loja</button><button id="staffMeeting">🗣️ Reunião de equipe</button></div><div class="staff-actions"><button id="selfReview">📝 Autoavaliação dos vendedores</button><button id="managerTalk">👨‍💼 Conversar com gerente</button></div></section><section class="panel staff-panel" id="schedulePanel"><h3>🗓️ Escala, pausas e cobertura</h3><div class="schedule-grid" id="scheduleGrid"></div><div class="dialog"><strong>Escala do dia</strong><p id="scheduleMessage">Pausas escalonadas para manter vendedores disponíveis. Sandra cobre o caixa durante as pausas.</p></div><div class="time-controls"><button id="advance10">⏱️ Avançar 10 minutos</button><button id="advance30">⏩ Avançar 30 minutos</button><button id="nextDay">🌅 Próximo dia</button><button id="managerLeave">🏖️ Simular folga da gerente</button><button id="managerVacation">🌴 Simular férias da gerente</button></div><div class="promotion" id="promotionBox">🏅 A promoção a subgerente será avaliada pelo desempenho, vendas, elogios e qualidade do atendimento.</div></section>
 <section class="panel staff-panel meeting-room" id="meetingRoom"><h3>🔒 Sala de reuniões — acesso exclusivo dos funcionários</h3><div class="meeting-wall"><div class="board-title">QUADRO DE EVOLUÇÃO · CIA IDEAL</div><div class="board-grid"><div><b>🎯 Metas da equipe</b><p>Atender sem pressionar · ouvir antes de oferecer · conhecer tamanhos e combinações.</p></div><div><b>📈 Indicadores</b><p id="meetingStats">Vendas, elogios, reclamações e evolução serão atualizados aqui.</p></div><div><b>📝 Plano de melhoria</b><p id="meetingPlan">Reuniões rápidas, autoavaliação e acompanhamento da gerente.</p></div></div></div><div class="staff-actions"><button id="privateMeeting">Iniciar reunião reservada</button><button id="updateBoard">Atualizar quadro de evolução</button></div><small>Área interna: clientes não entram nesta sala.</small></section>
 <section class="panel staff-panel"><h3>🧹 Higiene, limpeza e segurança</h3><div class="security-grid"><div class="security-tile"><b>Janela de monitoramento</b><div class="face-window"><div class="face-avatar" id="monitorFace">🙂</div><div><strong id="monitorFaceName">Visitante na loja</strong><small id="monitorFaceInfo">Visual ilustrativo do personagem selecionado</small></div></div><small>Exibe somente o avatar do jogo; não captura nem identifica rostos reais.</small></div><div class="security-tile"><b>Monitoramento da loja</b><div id="securityStatus">🟢 Sistema de câmeras simulado ativo</div><small>Visualização fictícia do jogo; sem acesso à câmera real do celular.</small></div></div><div class="security-tile" style="margin-top:8px"><b>Funcionária de limpeza</b><div id="cleanerStatus">🧹 Lúcia · Faxineira contratada · em serviço</div><small>Rotina automática de varrição, organização e banheiro.</small></div><div class="camera-feed" id="cameraFeed"><span>📹 CÂMERA 01 · SALÃO</span><span>📹 CÂMERA 02 · CAIXA</span><span>📹 CÂMERA 03 · PROVADOR EXTERNO</span></div><div class="audit-box"><b>📊 Auditoria de consumo e despesas</b><div class="audit-totals" id="auditTotals">Café: 0 · Banheiro: 0 · Itens: R$ 0,00</div><div class="audit-actions"><button id="auditBathroom">Registrar uso do banheiro</button><button id="auditSupplies">Registrar reposição de higiene</button><button id="auditExport">Resumo da auditoria</button></div><div id="auditLog" class="log"><p>Nenhum consumo registrado.</p></div><small>Registro operacional agregado, sem nome, imagem ou identificação de quem utilizou o banheiro.</small></div><p class="hint">Alertas são eventos simulados; não há reconhecimento facial nem vigilância real.</p><div class="staff-actions"><button id="securityScan">🔎 Fazer ronda de segurança</button><button id="cleanerNow">🧹 Chamar faxineira</button></div><div id="securityLog" class="log"><p>Sistema de monitoramento virtual iniciado.</p></div></section></aside></div>
@@ -487,6 +504,57 @@ $('auditBathroom').onclick=()=>{registerBathroomUse();toast('Uso do banheiro reg
 $('auditSupplies').onclick=()=>{storeAudit.soap+=5;storeAudit.toiletPaper+=5;storeAudit.paperTowels+=5;auditEvent('Reposição de materiais de higiene','5 unidades de cada',0);toast('Reposição registrada; ajuste custos na configuração do jogo.');};
 $('auditExport').onclick=()=>{const summary=storeAudit.events.map(e=>'Dia '+e.day+' '+e.time+' | '+e.label+' | '+e.qty+' | '+money(e.cost)).join('\n')+'\nTotal estimado: '+$('auditTotals').textContent;openModal('Resumo da auditoria',summary,[{label:'Fechar',run:()=>{}}]);};
 monitorRender();auditRender();
+
+/* Sistemas adicionais: relacionamento com clientes, desenvolvimento da equipe e filiais */
+const CIA_STORAGE='ciaIdealExpansionV1';
+let ciaData={crm:{},branches:[{id:'matriz',name:'Cia Ideal · Matriz',manager:'Sandra',target:5000,revenue:0,sales:0}],activeBranch:'matriz',goal:10,processed:[]};
+try{const saved=JSON.parse(localStorage.getItem(CIA_STORAGE)||'null');if(saved&&typeof saved==='object'){ciaData={...ciaData,...saved};ciaData.crm=ciaData.crm||{};ciaData.branches=Array.isArray(ciaData.branches)&&ciaData.branches.length?saved.branches:ciaData.branches;ciaData.processed=ciaData.processed||[]}}catch(e){console.warn('Dados locais da expansão não puderam ser lidos.',e)}
+function ciaSave(){try{localStorage.setItem(CIA_STORAGE,JSON.stringify(ciaData))}catch(e){console.warn('Não foi possível salvar os dados locais.',e)}}
+function crmRecord(c){if(!c)return;const key=String(c.name||'Visitante');const r=ciaData.crm[key]||(ciaData.crm[key]={name:key,visits:0,purchases:0,total:0,lastNeed:c.need||'',lastSeen:new Date().toISOString(),points:0});r.visits++;r.lastNeed=c.need||r.lastNeed;r.lastSeen=new Date().toISOString();c.crmKey=key;ciaSave();crmRender()}
+function crmRender(){
+ const rows=Object.values(ciaData.crm),buyers=rows.filter(x=>x.purchases>0),spent=rows.reduce((n,x)=>n+x.total,0);
+ $('crmSummary').innerHTML='<div class="crm-kpi"><b>'+rows.length+'</b>Clientes conhecidos</div><div class="crm-kpi"><b>'+buyers.length+'</b>Já compraram</div><div class="crm-kpi"><b>'+money(spent)+'</b>Vendas identificadas</div>';
+ $('crmList').innerHTML='';
+ rows.sort((a,b)=>b.total-a.total).slice(0,8).forEach(r=>{const el=document.createElement('div');el.className='crm-row';const left=document.createElement('div');const strong=document.createElement('b');strong.textContent=r.name;const small=document.createElement('small');small.textContent=r.visits+' visita(s) · '+r.purchases+' compra(s) · '+money(r.total);left.append(strong,small);const tier=document.createElement('span');tier.className='crm-tier';tier.textContent=r.purchases>=3?'VIP':r.purchases>=1?'Fidelizado':'Novo';el.append(left,tier);$('crmList').append(el)});
+ if(!rows.length)$('crmList').innerHTML='<small>Os clientes aparecerão aqui quando entrarem na loja.</small>';
+}
+function crmProcessSales(){
+ state.customers.filter(c=>c.status==='comprou'&&c.crmKey&&!ciaData.processed.includes(String(c.id))).forEach(c=>{
+  const r=ciaData.crm[c.crmKey];if(!r)return;r.purchases++;r.total+=Number(c.lastSaleAmount||0);r.points+=Math.round((c.lastSaleAmount||0)/10);ciaData.processed.push(String(c.id));
+  const b=ciaData.branches.find(x=>x.id===ciaData.activeBranch);if(b){b.sales++;b.revenue+=Number(c.lastSaleAmount||0)}
+ });
+ ciaSave();crmRender();branchRender();
+}
+const ciaOriginalSpawn=spawn;
+spawn=function(){ciaOriginalSpawn();const c=state.customers[state.customers.length-1];if(c){crmRecord(c);const returning=ciaData.crm[c.name];if(returning&&returning.purchases>0){c.interest=(c.interest||0)+1;log(c.name+' foi reconhecido(a) como cliente recorrente. O atendimento considerará seu histórico.');}}};
+const ciaOriginalUpdate=update;
+update=function(){ciaOriginalUpdate();crmProcessSales();managementRender()};
+const ciaOriginalSale=state.customers;
+function managementRender(){
+ if(!$('managementKpis'))return;
+ const sales=team.reduce((n,v)=>n+(roster.totalSales[v.id]||0),0),skill=team.length?Math.round(team.reduce((n,v)=>n+v.skill,0)/team.length):0;
+ $('managementKpis').innerHTML='<div class="management-kpi"><b>'+team.length+'</b>Colaboradores</div><div class="management-kpi"><b>'+sales+'</b>Vendas da equipe</div><div class="management-kpi"><b>'+skill+'%</b>Habilidade média</div><div class="management-kpi"><b>'+state.sales+'</b>Vendas da unidade</div>';
+}
+function branchRender(){
+ if(!$('branchList'))return;
+ const total=ciaData.branches.reduce((n,b)=>n+b.revenue,0),active=ciaData.branches.find(b=>b.id===ciaData.activeBranch)||ciaData.branches[0];
+ $('branchOverview').innerHTML='<div class="branch-kpi"><b>'+ciaData.branches.length+'</b>Unidades</div><div class="branch-kpi"><b>'+money(total)+'</b>Faturamento da rede</div><div class="branch-kpi"><b>'+active.name+'</b>Unidade ativa</div>';
+ $('branchList').innerHTML='';
+ ciaData.branches.forEach(b=>{const el=document.createElement('div');el.className='branch-row'+(b.id===ciaData.activeBranch?' active':'');const left=document.createElement('div');const strong=document.createElement('b');strong.textContent=b.name;const small=document.createElement('small');small.textContent='Gerente: '+b.manager+' · '+b.sales+' vendas · Meta: '+money(b.target);left.append(strong,small);const right=document.createElement('b');right.textContent=money(b.revenue);el.append(left,right);$('branchList').append(el)});
+ $('branchMessage').textContent='Unidade ativa: '+active.name+'. Meta de faturamento: '+money(active.target)+'. '+(ciaData.branches.length>=5?'Limite de 5 unidades atingido.':'Você pode abrir até 5 unidades nesta simulação.');
+}
+$('crmRefresh').onclick=crmRender;
+$('crmExport').onclick=()=>{const lines=Object.values(ciaData.crm).map(r=>r.name+' | visitas: '+r.visits+' | compras: '+r.purchases+' | total: '+money(r.total));openModal('Carteira de clientes',lines.join('\n')||'Ainda não há clientes cadastrados.',[{label:'Fechar',run:()=>{}}])};
+$('trainService').onclick=()=>{team.forEach(v=>{v.skill=Math.min(100,v.skill+5);v.xp+=3});$('trainingMessage').textContent='Treinamento concluído: escuta ativa, abordagem respeitosa e pós-venda. Habilidade da equipe aumentou.';teamRender();managementRender();log('Treinamento geral de atendimento concluído.')};
+$('trainProducts').onclick=()=>{team.forEach(v=>{v.skill=Math.min(100,v.skill+3);v.xp+=5});$('trainingMessage').textContent='Treinamento de produtos concluído: combinações, tamanhos, materiais e sugestões complementares.';teamRender();managementRender();log('Treinamento de produtos concluído.')};
+$('teamBonus').onclick=()=>{state.points+=team.length*5;team.forEach(v=>v.xp+=5);$('trainingMessage').textContent='Reconhecimento registrado para toda a equipe. A reputação aumentou.';teamRender();update();log('Equipe reconhecida pela gerência.')};
+$('setTeamGoal').onclick=()=>{const val=prompt('Defina a meta diária de vendas (quantidade):',String(ciaData.goal));if(val===null)return;const n=Math.floor(Number(val));if(!Number.isFinite(n)||n<1||n>500){toast('Informe uma meta entre 1 e 500 vendas.');return}ciaData.goal=n;ciaSave();$('trainingMessage').textContent='Nova meta definida: '+n+' vendas por dia. Acompanhe o progresso no painel.';};
+$('openBranch').onclick=()=>{if(ciaData.branches.length>=5){toast('A rede já atingiu o limite de 5 unidades.');return}const name=prompt('Nome da nova filial:','Cia Ideal · Unidade '+(ciaData.branches.length+1));if(!name||!name.trim())return;const managerNameInput=prompt('Nome do gerente responsável:','Gerente da unidade');if(managerNameInput===null)return;const id='filial_'+Date.now();ciaData.branches.push({id,name:name.trim().slice(0,50),manager:managerNameInput.trim().slice(0,40)||'Gerente a contratar',target:5000,revenue:0,sales:0});ciaData.activeBranch=id;ciaSave();branchRender();toast('Nova filial criada na simulação!');log('Nova unidade aberta: '+name.trim());};
+$('switchBranch').onclick=()=>{if(ciaData.branches.length<2){toast('Abra uma filial antes de alternar unidades.');return}const idx=ciaData.branches.findIndex(b=>b.id===ciaData.activeBranch);ciaData.activeBranch=ciaData.branches[(idx+1)%ciaData.branches.length].id;ciaSave();branchRender();toast('Unidade ativa: '+ciaData.branches.find(b=>b.id===ciaData.activeBranch).name)};
+$('branchReport').onclick=()=>{const lines=ciaData.branches.map(b=>b.name+'\nGerente: '+b.manager+'\nVendas: '+b.sales+'\nFaturamento: '+money(b.revenue)+'\nMeta: '+money(b.target));openModal('Relatório da rede Cia Ideal',lines.join('\n\n'),[{label:'Fechar',run:()=>{}}])};
+crmRender();branchRender();managementRender();
+setInterval(()=>{crmProcessSales();managementRender()},5000);
+
 </script>
 <script>
 // Instalação PWA e cache offline do jogo
