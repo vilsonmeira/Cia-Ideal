@@ -16,6 +16,63 @@
 @media(max-width:600px){.board-grid{grid-template-columns:1fr}.security-grid{grid-template-columns:1fr}.coffee{left:68%;top:28%}.cam1,.cam2{font-size:15px}}
 .face-window{display:flex;align-items:center;gap:10px;background:#111827;color:white;border-radius:9px;padding:10px;margin:7px 0}.face-avatar{width:64px;height:64px;flex:0 0 64px;border-radius:50%;display:grid;place-items:center;background:#dbeafe;color:#172554;font-size:39px;border:3px solid #94a3b8}.face-window strong,.face-window small{display:block}.face-window small{color:#cbd5e1;font-size:10px}.audit-box{border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:9px;background:#fbfcff}.audit-totals{font-weight:800;font-size:12px;margin:7px 0}.audit-actions{display:flex;gap:6px;flex-wrap:wrap}.audit-actions button{border:1px solid var(--line);border-radius:7px;background:white;padding:7px;font-size:11px;font-weight:700}.audit-box small{font-size:10px;color:var(--muted)}
 .camera-modal{position:fixed;inset:0;background:#0b1220ee;z-index:30;display:none;align-items:center;justify-content:center;padding:12px}.camera-modal.show{display:flex}.camera-shell{width:min(900px,100%);max-height:94vh;overflow:auto;background:#f8fafc;border-radius:16px;padding:14px;box-shadow:0 24px 70px #0008}.camera-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}.camera-head h2{font-size:18px;margin:0;color:#172554}.camera-views{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px}.camera-views button{border:1px solid #cbd5e1;background:white;border-radius:9px;padding:8px 5px;font-size:11px;font-weight:800;color:#243452}.camera-views button.active{background:#172554;color:white;border-color:#172554}.camera-screen{position:relative;height:min(58vh,460px);min-height:280px;overflow:hidden;border:7px solid #26344f;border-radius:12px;background:#e9dfce}.camera-map{position:absolute;inset:0;background-image:linear-gradient(#bca98b30 1px,transparent 1px),linear-gradient(90deg,#bca98b30 1px,transparent 1px);background-size:28px 28px;transition:transform .35s;transform-origin:center}.camera-map:before{content:"";position:absolute;inset:8%;border:5px solid #927d5f;border-radius:9px;background:#f7f0e4}.cam-zone{position:absolute;z-index:1;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;background:#ffffffdc;border:2px solid #9e8768;border-radius:8px;padding:4px;font-size:clamp(9px,1.5vw,13px);font-weight:900;color:#57442f}.cam-zone small{font-size:9px;font-weight:600}.cam-vitrine{left:10%;top:12%;width:25%;height:22%}.cam-araras{right:10%;top:12%;width:25%;height:22%}.cam-sapatos{left:10%;bottom:12%;width:25%;height:22%}.cam-provador{right:10%;bottom:12%;width:25%;height:22%}.cam-caixa{left:39%;bottom:9%;width:22%;height:17%;background:#e5edff;border-color:#4567a8}.cam-people{position:absolute;inset:0;z-index:3;pointer-events:none}.cam-person{position:absolute;transform:translate(-50%,-50%);font-size:25px;text-align:center;filter:drop-shadow(0 2px 2px #0005)}.cam-person small{display:block;background:#172554;color:white;border-radius:5px;padding:1px 4px;font-size:9px;white-space:nowrap}.cam-valdir{position:absolute;left:50%;top:49%;z-index:4;transform:translate(-50%,-50%);font-size:27px;text-align:center}.cam-valdir small{display:block;background:#172554;color:white;border-radius:5px;padding:1px 5px;font-size:9px}.camera-status{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-top:9px;font-size:11px;color:#475467}.camera-status b{color:#16834a}.security-camera,.camera-feed span{cursor:pointer}.security-camera:hover{outline:3px solid #f4bd50}@media(max-width:520px){.camera-views{grid-template-columns:repeat(2,1fr)}.camera-shell{padding:10px}.camera-screen{min-height:250px;height:48vh}.cam-zone{font-size:9px}.cam-zone small{font-size:8px}}
+
+/* Cia Ideal · salão isométrico (camada visual, sem alterar a lógica do jogo) */
+.floor{
+  min-height:480px;
+  isolation:isolate;
+  background:
+    linear-gradient(180deg,#e9f1f4 0 8%,transparent 8%),
+    linear-gradient(135deg,#f4ead8,#e8dcc8 55%,#d8c8ad);
+  perspective:1100px;
+}
+.floor:before{
+  inset:5% 3%;
+  border:10px solid #8b7355;
+  border-radius:5px;
+  background-color:#e9dfcc;
+  background-image:
+    linear-gradient(45deg,#c4b39633 25%,transparent 25%,transparent 75%,#c4b39633 75%),
+    linear-gradient(-45deg,#c4b39633 25%,transparent 25%,transparent 75%,#c4b39633 75%);
+  background-size:38px 38px;
+  background-position:0 0,19px 19px;
+  box-shadow:inset 0 0 0 5px #fff8,0 14px 0 #735b43,0 22px 24px #49351f35;
+  clip-path:polygon(50% 0,100% 19%,100% 81%,50% 100%,0 81%,0 19%);
+  z-index:0;
+}
+.floor .zone{
+  border:2px solid #8a6b45;
+  border-radius:7px;
+  background:linear-gradient(145deg,#fffdf7,#eadcc4);
+  box-shadow:7px 9px 0 #8b735566,0 12px 18px #4b392326,inset 0 2px 0 #fff;
+  transform:rotate(-3deg) skewY(-3deg);
+  color:#493923;
+  text-shadow:0 1px #fff;
+}
+.floor .zone span{filter:drop-shadow(2px 3px 1px #0003)}
+.floor .window{border-color:#668da2;background:linear-gradient(145deg,#e9f8ff,#c5dfe9);box-shadow:7px 9px 0 #668da277,0 12px 18px #4b392326}
+.floor .rack{background:linear-gradient(145deg,#fff4d8,#e5c994);border-color:#a77b3c}
+.floor .fitting{background:linear-gradient(145deg,#f3e8d7,#d8c3a5)}
+.floor .mirror{background:linear-gradient(145deg,#e9f5ff,#bfd4e7);border-color:#668da2}
+.floor .counter{background:linear-gradient(145deg,#e3eaff,#aebfe5);border-color:#536fa8;box-shadow:7px 9px 0 #536fa877,0 12px 18px #4b392326}
+.floor .facility{
+  border-radius:6px;
+  box-shadow:5px 6px 0 #55776566,0 8px 12px #0002;
+  transform:rotate(-3deg) skewY(-3deg);
+}
+.floor .security-camera{box-shadow:3px 4px 0 #26344f55}
+.floor .centerpath{border:3px dashed #b08d5a66;background:#fff5}
+.floor .person .emoji,.floor .valdir span{filter:drop-shadow(3px 5px 2px #0004)}
+.floor .person b,.floor .valdir b{box-shadow:0 3px 0 #0002,0 5px 9px #0002}
+.floor .valdir{z-index:5}
+@media(max-width:760px){
+ .floor{min-height:420px}
+ .floor:before{inset:7% 1%;border-width:7px;background-size:30px 30px;background-position:0 0,15px 15px}
+ .floor .zone{padding:4px;box-shadow:4px 6px 0 #8b735566,0 8px 12px #4b392326}
+ .floor .facility{box-shadow:3px 4px 0 #55776566}
+}
+@media(max-width:430px){.floor{min-height:390px}}
+
 </style></head><body>
 <header class="top"><div class="brand"><img class="app-logo" src="./icon.svg" alt="Logo Valdir"><div><h1>Valdir — O Mestre das Vendas</h1><small>Uma loja viva. Clientes reais, decisões suas.</small></div></div><div style="display:flex;align-items:center;gap:8px"><button id="installApp" class="install-btn" hidden>＋ Instalar app</button><div class="pill" id="level">NÍVEL 1 · VENDEDOR</div></div></header>
 <section class="stats"><div class="stat"><small>Vendas fechadas</small><b id="sales">0</b></div><div class="stat"><small>Faturamento</small><b id="revenue">R$ 0</b></div><div class="stat"><small>Reputação</small><b id="points">0 pts</b></div><div class="stat"><small>Clientes na loja</small><b id="customers">1</b></div></section>
